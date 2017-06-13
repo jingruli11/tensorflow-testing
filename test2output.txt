@@ -1,0 +1,39 @@
+                 age  workclass     fnlwgt  education       education_num  \
+39         State-gov      77516  Bachelors         13       Never-married   
+50  Self-emp-not-inc      83311  Bachelors         13  Married-civ-spouse   
+38           Private     215646    HS-grad          9            Divorced   
+53           Private     234721       11th          7  Married-civ-spouse   
+28           Private     338409  Bachelors         13  Married-civ-spouse   
+
+       marital_status     occupation relationshiprace  gender  capital_gain  \
+39       Adm-clerical  Not-in-family            White    Male          2174   
+50    Exec-managerial        Husband            White    Male             0   
+38  Handlers-cleaners  Not-in-family            White    Male             0   
+53  Handlers-cleaners        Husband            Black    Male             0   
+28     Prof-specialty           Wife            Black  Female             0   
+
+    capital_loss  hours_per_week native_country income_bracket  
+39             0              40  United-States          <=50K  
+50             0              13  United-States          <=50K  
+38             0              40  United-States          <=50K  
+53             0              40  United-States          <=50K  
+28             0              40           Cuba          <=50K             age  workclass        fnlwgt  education       education_num  \
+25    Private     226802          11th          7       Never-married   
+38    Private      89814       HS-grad          9  Married-civ-spouse   
+28  Local-gov     336951    Assoc-acdm         12  Married-civ-spouse   
+44    Private     160323  Some-college         10  Married-civ-spouse   
+18          ?     103497  Some-college         10       Never-married   
+
+       marital_status occupation relationshiprace  gender  capital_gain  \
+25  Machine-op-inspct  Own-child            Black    Male             0   
+38    Farming-fishing    Husband            White    Male             0   
+28    Protective-serv    Husband            White    Male             0   
+44  Machine-op-inspct    Husband            Black    Male          7688   
+18                  ?  Own-child            White  Female             0   
+
+    capital_loss  hours_per_week native_country income_bracket  
+25             0              40  United-States         <=50K.  
+38             0              50  United-States         <=50K.  
+28             0              40  United-States          >50K.  
+44             0              40  United-States          >50K.  
+18             0              30  United-States         <=50K.  
