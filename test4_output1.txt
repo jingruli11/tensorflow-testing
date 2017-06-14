@@ -1,0 +1,342 @@
+  reservationNumber                                               from  \
+0        RES-Q1HKZK  5175 South Old Peachtree Road, Norcross, GA, U...   
+1        RES-Q1H68F  2979, Lake Colony, Lake Colony Drive Northwest...   
+2        RES-Q1GV1Z  Casa Blanca Restaurant, Peachtree Industrial B...   
+3        RES-Q1GCJA  LA Fitness, Jimmy Carter Boulevard, Norcross, ...   
+4        RES-Q1G54R  Little Caesars Pizza, Holcomb Bridge Road, Nor...   
+
+   passengers                     rider              serviceLevel  \
+0           1  585eeca79b1441f8923662ed  571f94066095b2634daa3f7a   
+1           1  572763e3c9c845d866b9badc  571f94066095b2634daa3f7a   
+2           1  591971fd7fffbb38fbdbf3a6  571f94066095b2634daa3f7a   
+3           1  573f75b7e0588bc00d12790e  571f94066095b2634daa3f7a   
+4           2  58dd445eb47957072ebe26ae  571f94066095b2634daa3f7a   
+
+              scheduledTime   start_lat   start_long           end_lat  \
+0  2017-06-08T20:09:00.000Z  33.9695139  -84.2072535        33.9794477   
+1  2017-06-08T20:07:00.000Z  33.9307076  -84.2590749        33.9460808   
+2  2017-06-08T20:05:00.000Z  33.9292863  -84.2673667  33.9441766776461   
+3  2017-06-08T20:04:00.000Z  33.9474171  -84.2417582        33.9600765   
+4  2017-06-08T20:01:00.000Z  33.9527705  -84.2415106  33.9523105603028   
+
+            end_long  
+0        -84.1957552  
+1        -84.2410151  
+2  -84.2414294277171  
+3         -84.249217  
+4  -84.2415211257378  
+reservationNumber:
+
+count          30000
+unique         29990
+top       RES-M9Y7B7
+freq               2
+Name: reservationNumber, dtype: object
+0    RES-Q1HKZK
+1    RES-Q1H68F
+2    RES-Q1GV1Z
+3    RES-Q1GCJA
+4    RES-Q1G54R
+Name: reservationNumber, dtype: object
+from:
+
+count                                                 30000
+unique                                                 5402
+top       Garden Plaza Atlanta / Norcross, Peachtree Ind...
+freq                                                    269
+Name: from, dtype: object
+0    5175 South Old Peachtree Road, Norcross, GA, U...
+1    2979, Lake Colony, Lake Colony Drive Northwest...
+2    Casa Blanca Restaurant, Peachtree Industrial B...
+3    LA Fitness, Jimmy Carter Boulevard, Norcross, ...
+4    Little Caesars Pizza, Holcomb Bridge Road, Nor...
+Name: from, dtype: object
+passengers:
+
+count    30000.000000
+mean         1.003267
+std          0.076089
+min          1.000000
+25%          1.000000
+50%          1.000000
+75%          1.000000
+max          4.000000
+Name: passengers, dtype: float64
+0    1
+1    1
+2    1
+3    1
+4    2
+Name: passengers, dtype: int64
+rider:
+
+count                        30000
+unique                        5457
+top       584187aa1d1b17baa3094557
+freq                           161
+Name: rider, dtype: object
+0    585eeca79b1441f8923662ed
+1    572763e3c9c845d866b9badc
+2    591971fd7fffbb38fbdbf3a6
+3    573f75b7e0588bc00d12790e
+4    58dd445eb47957072ebe26ae
+Name: rider, dtype: object
+serviceLevel:
+
+count                        30000
+unique                           5
+top       571f94066095b2634daa3f7a
+freq                         21188
+Name: serviceLevel, dtype: object
+0    571f94066095b2634daa3f7a
+1    571f94066095b2634daa3f7a
+2    571f94066095b2634daa3f7a
+3    571f94066095b2634daa3f7a
+4    571f94066095b2634daa3f7a
+Name: serviceLevel, dtype: object
+scheduledTime:
+
+count                        30000
+unique                       25474
+top       2017-05-26T21:41:00.000Z
+freq                             5
+Name: scheduledTime, dtype: object
+0    2017-06-08T20:09:00.000Z
+1    2017-06-08T20:07:00.000Z
+2    2017-06-08T20:05:00.000Z
+3    2017-06-08T20:04:00.000Z
+4    2017-06-08T20:01:00.000Z
+Name: scheduledTime, dtype: object
+start_lat:
+
+count         30000
+unique         5040
+top       33.967347
+freq            486
+Name: start_lat, dtype: object
+0    33.9695139
+1    33.9307076
+2    33.9292863
+3    33.9474171
+4    33.9527705
+Name: start_lat, dtype: object
+start_long:
+
+count          30000
+unique          5014
+top       -84.205578
+freq             491
+Name: start_long, dtype: object
+0    -84.2072535
+1    -84.2590749
+2    -84.2673667
+3    -84.2417582
+4    -84.2415106
+Name: start_long, dtype: object
+end_lat:
+
+count         30000
+unique        29290
+top       33.916297
+freq             27
+Name: end_lat, dtype: object
+0          33.9794477
+1          33.9460808
+2    33.9441766776461
+3          33.9600765
+4    33.9523105603028
+Name: end_lat, dtype: object
+end_long:
+
+count           30000
+unique          29414
+top       -84.5558269
+freq               27
+Name: end_long, dtype: object
+0          -84.1957552
+1          -84.2410151
+2    -84.2414294277171
+3           -84.249217
+4    -84.2415211257378
+Name: end_long, dtype: object
+   reservationNumber                                               from  \
+26        RES-Q16GVG              3478 Church St, Duluth, GA 30096, USA   
+27        RES-Q16EW9  4299 Northeast Expressway, Doraville, GA, Unit...   
+32        RES-Q159T3  5612-5616 Jimmy Carter Boulevard, Norcross, 30071   
+38         RES-PN4N4  Hartsfield-Jackson Atlanta International Airpo...   
+55        RES-Q0QSAB          4449 Reeder Ln NW, Lilburn, GA 30047, USA   
+
+                                                   to  passengers  \
+26  2590 Peachtree Industrial Blvd, Duluth, GA 300...           2   
+27     8100 Springs Lane, Norcross, GA, United States           1   
+32        6015 Oakbrook Pkwy, Norcross, GA 30093, USA           1   
+38     4195 Oaknoll Circle, Duluth, GA, United States           1   
+55     4004 Lawrenceville Hwy, Lilburn, GA 30047, USA           1   
+
+                       rider              serviceLevel  \
+26  57c387a69ac20e80bca8945a  571f94066095b2634daa3f7a   
+27  587002736ac38627a156ba2e  571f94066095b2634daa3f7a   
+32  5936e0a67195808675d95b26  571f94066095b2634daa3f7a   
+38  5935704f289e678332b77203  5720cacf9b36887aef7fbaa6   
+55  58b0c829d01c0848802de433  5728a0b84b4be25e7aec2a8c   
+
+               scheduledTime         start_lat         start_long  \
+26  2017-06-08T18:52:00.000Z  34.0038757324219  -84.1382141113281   
+27  2017-06-08T18:51:00.000Z        33.8969992        -84.2490293   
+32  2017-06-08T18:42:00.000Z  33.9126853942871  -84.2080154418945   
+38  2017-06-08T18:30:00.000Z        33.6407282        -84.4277001   
+55  2017-06-08T17:45:00.000Z  33.9030838012695  -84.1318511962891   
+
+             end_lat           end_long  
+26        34.0214944        -84.1371643  
+27  33.9508117067675  -84.2546412917637  
+32        33.9305422         -84.219993  
+38        33.9514633         -84.152165  
+55        33.9308092        -84.1460087  
+reservationNumber:
+
+count           2264
+unique          2262
+top       RES-M9XA41
+freq               2
+Name: reservationNumber, dtype: object
+26    RES-Q16GVG
+27    RES-Q16EW9
+32    RES-Q159T3
+38     RES-PN4N4
+55    RES-Q0QSAB
+Name: reservationNumber, dtype: object
+from:
+
+count                                      2264
+unique                                     1147
+top       3478 Church St, Duluth, GA 30096, USA
+freq                                         62
+Name: from, dtype: object
+26                3478 Church St, Duluth, GA 30096, USA
+27    4299 Northeast Expressway, Doraville, GA, Unit...
+32    5612-5616 Jimmy Carter Boulevard, Norcross, 30071
+38    Hartsfield-Jackson Atlanta International Airpo...
+55            4449 Reeder Ln NW, Lilburn, GA 30047, USA
+Name: from, dtype: object
+to:
+
+count                                         2264
+unique                                        1054
+top       5565 Buford Hwy, Norcross, GA 30071, USA
+freq                                            66
+Name: to, dtype: object
+26    2590 Peachtree Industrial Blvd, Duluth, GA 300...
+27       8100 Springs Lane, Norcross, GA, United States
+32          6015 Oakbrook Pkwy, Norcross, GA 30093, USA
+38       4195 Oaknoll Circle, Duluth, GA, United States
+55       4004 Lawrenceville Hwy, Lilburn, GA 30047, USA
+Name: to, dtype: object
+passengers:
+
+count    2264.000000
+mean        1.002650
+std         0.066422
+min         1.000000
+25%         1.000000
+50%         1.000000
+75%         1.000000
+max         3.000000
+Name: passengers, dtype: float64
+26    2
+27    1
+32    1
+38    1
+55    1
+Name: passengers, dtype: int64
+rider:
+
+count                         2264
+unique                        1064
+top       57c387a69ac20e80bca8945a
+freq                           124
+Name: rider, dtype: object
+26    57c387a69ac20e80bca8945a
+27    587002736ac38627a156ba2e
+32    5936e0a67195808675d95b26
+38    5935704f289e678332b77203
+55    58b0c829d01c0848802de433
+Name: rider, dtype: object
+serviceLevel:
+
+count                         2264
+unique                           4
+top       571f94066095b2634daa3f7a
+freq                          1549
+Name: serviceLevel, dtype: object
+26    571f94066095b2634daa3f7a
+27    571f94066095b2634daa3f7a
+32    571f94066095b2634daa3f7a
+38    5720cacf9b36887aef7fbaa6
+55    5728a0b84b4be25e7aec2a8c
+Name: serviceLevel, dtype: object
+scheduledTime:
+
+count                         2264
+unique                        2228
+top       2017-04-20T20:00:00.000Z
+freq                             3
+Name: scheduledTime, dtype: object
+26    2017-06-08T18:52:00.000Z
+27    2017-06-08T18:51:00.000Z
+32    2017-06-08T18:42:00.000Z
+38    2017-06-08T18:30:00.000Z
+55    2017-06-08T17:45:00.000Z
+Name: scheduledTime, dtype: object
+start_lat:
+
+count                 2264
+unique                1196
+top       34.0038757324219
+freq                    62
+Name: start_lat, dtype: object
+26    34.0038757324219
+27          33.8969992
+32    33.9126853942871
+38          33.6407282
+55    33.9030838012695
+Name: start_lat, dtype: object
+start_long:
+
+count                  2264
+unique                 1184
+top       -84.1382141113281
+freq                     62
+Name: start_long, dtype: object
+26    -84.1382141113281
+27          -84.2490293
+32    -84.2080154418945
+38          -84.4277001
+55    -84.1318511962891
+Name: start_long, dtype: object
+end_lat:
+
+count           2264
+unique          2249
+top       33.6407282
+freq               5
+Name: end_lat, dtype: object
+26          34.0214944
+27    33.9508117067675
+32          33.9305422
+38          33.9514633
+55          33.9308092
+Name: end_lat, dtype: object
+end_long:
+
+count            2264
+unique           2251
+top       -84.4277001
+freq                5
+Name: end_long, dtype: object
+26          -84.1371643
+27    -84.2546412917637
+32           -84.219993
+38           -84.152165
+55          -84.1460087
+Name: end_long, dtype: object
