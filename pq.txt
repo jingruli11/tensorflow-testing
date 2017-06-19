@@ -1,0 +1,94 @@
+       patient_age_at_testing
+count           125663.000000
+mean                57.138012
+std                 17.857203
+min                 19.000000
+25%                 44.000000
+50%                 58.000000
+75%                 71.000000
+max                105.000000
+                   meta_package_key  \
+0  d62b98df3a870c35d635bf1e4894d177   
+1  498e0d2318e0aa4dd274f59ff02ab105   
+2  ec3f19a7bda9bb3506875427b3dfbb4b   
+3  38340403c04e3f9a9b40d34b94985172   
+4  38340403c04e3f9a9b40d34b94985172   
+
+                                    input_filename patient_date_of_birth  \
+0  Medivo_QDI_Historical_HL1_20140201_20140301.csv                  1948   
+1  Medivo_QDI_Historical_HL1_20131101_20131201.csv                  1943   
+2  Medivo_QDI_Historical_HL1_20131001_20131101.csv                  1937   
+3  Medivo_QDI_Historical_HL1_20140901_20141001.csv                  1963   
+4  Medivo_QDI_Historical_HL1_20140901_20141001.csv                  1974   
+
+  patient_gender receiving_organization_id  \
+0              F                        35   
+1              M                        22   
+2              F                        30   
+3              F                        30   
+4              F                        33   
+
+                             diagnosis_codes ordering_practice_name  \
+0                                 ICD9/78079                          
+1  ICD9/4019^ICD9/2720^ICD9/78079^ICD9/V7644                          
+2   ICD9/2724^ICD9/2689^ICD9/4019^ICD9/78079                          
+3  ICD9/2859^ICD9/2724^ICD9/27800^ICD9/78079                          
+4                                 ICD9/78079                          
+
+  ordering_practice_lab_account_name ordering_practice_lab_account_number  \
+0           CAPITOL GASTROENTEROLOGY                               123260   
+1                     TRUNG TRAN, MD                               146589   
+2             SHAWN,LESLIE MD H#1546                                89768   
+3                    ABLES,LILIA  MD                                99215   
+4             MICHIGAN INST OF OBGYN                            563694873   
+
+  ordering_practice_address_line_1       ...        test_transaction_datetime  \
+0           6555 COYLE AVE STE 330       ...                              NaT   
+1              4139 UNIVERSITY AVE       ...                              NaT   
+2        400 N HIATUS ROAD SUITE 2       ...                              NaT   
+3               8362 SW 8TH STREET       ...                              NaT   
+4           30445 NORTHWESTERN HWY       ...                              NaT   
+
+  test_observation_datetime billing_diagnosis_codes  \
+0                       NaT                           
+1                       NaT                           
+2                       NaT                           
+3                       NaT                           
+4                       NaT                           
+
+                             medivo_test_result_type  \
+0       Cholesterol [Mass/volume] in Serum or Plasma   
+1       Cholesterol [Mass/volume] in Serum or Plasma   
+2       Cholesterol [Mass/volume] in Serum or Plasma   
+3  Cholesterol in LDL [Mass/volume] in Serum or P...   
+4       Cholesterol [Mass/volume] in Serum or Plasma   
+
+                   available_diagnosis_codes  \
+0                                 ICD9/78079   
+1  ICD9/4019^ICD9/2720^ICD9/78079^ICD9/V7644   
+2   ICD9/2724^ICD9/2689^ICD9/4019^ICD9/78079   
+3  ICD9/2859^ICD9/2724^ICD9/27800^ICD9/78079   
+4                                 ICD9/78079   
+
+  estimated_patient_test_performed_datetime  \
+0                       2014-02-06 10:40:00   
+1                       2013-11-20 09:30:00   
+2                       2013-10-08 09:51:00   
+3                       2014-09-09 11:03:00   
+4                       2014-09-03 10:46:00   
+
+  estimated_provider_observation_datetime patient_age_at_testing  \
+0                     2014-02-07 00:32:00                     66   
+1                     2013-11-21 18:21:00                     70   
+2                     2013-10-13 13:00:00                     76   
+3                     2014-09-10 12:53:00                     51   
+4                     2014-09-06 19:53:00                     40   
+
+  test_result_units_of_measure_multi_lab WasTestPerformed  
+0                                  mg/dL             True  
+1                                  mg/dL             True  
+2                                  mg/dL             True  
+3                           mg/dL (calc)             True  
+4                                  mg/dL             True  
+
+[5 rows x 63 columns]

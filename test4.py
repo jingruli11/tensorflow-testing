@@ -4,7 +4,7 @@ import pandas as pd
 import numpy as np 
 import matplotlib.pyplot as plt 
 import sklearn
-import tensorflow as tf 
+# import tensorflow as tf 
 
 
 # read csv file into pandas dataframe
