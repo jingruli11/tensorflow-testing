@@ -3,7 +3,6 @@
 import pandas as pd 
 import numpy as np 
 import matplotlib.pyplot as plt 
-import sklearn
 # import tensorflow as tf 
 
 
@@ -21,11 +20,20 @@ columns_to_keep = ['reservationNumber', 'from', 'passengers', 'rider',
 					'serviceLevel', 'scheduledTime', 'start_lt','start_lg',
 					'end_lt','end_lg']
 df = df[columns_to_keep].dropna()
-df['serviceLevel'].replace(to_replace = '571f94066095b2634daa3f7a', value = 'standard', inplace = True)
-df['serviceLevel'].replace(to_replace = '5720cacf9b36887aef7fbaa6', value = 'SUV/van', inplace = True)
+df['serviceLevel'].replace(to_replace = '571f94066095b2634daa3f7a', value = 'Any vehicle', inplace = True)
+df['serviceLevel'].replace(to_replace = '5720cacf9b36887aef7fbaa6', value = 'Wheelchair-accessible', inplace = True)
+df['serviceLevel'].replace(to_replace = '5728a0b84b4be25e7aec2a8c', value = 'Any vehicle', inplace = True)
+df['serviceLevel'].replace(to_replace = '572e01e12db0c8729f9859af', value = 'Van', inplace = True)
+df['serviceLevel'].replace(to_replace = '58c7f9f39dc296a494091494', value = 'Any vehicle', inplace = True)
 
+# filter the dataframe to only include service level = any vehicle
+df = df[df['serviceLevel'] == 'Any vehicle']
 
-df.to_csv('dataframe.csv', sep = ',')
+# check the result of filter
+# print df['serviceLevel'].describe()
+
+# output the dataframe to csv file
+df.to_csv('dataframe.csv', sep = ',', index_label = 'Index')
 #print df.head()
 #print df['serviceLevel'].value_counts()
 
