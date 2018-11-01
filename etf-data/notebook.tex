@@ -1,0 +1,1518 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Stash}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \subsection{Stash Data Challenge}\label{stash-data-challenge}
+
+\textbf{Jingru Li}\\
+\textbf{Oct 31, 2018}
+
+    \subsubsection{Environment Setup}\label{environment-setup}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}139}]:} \PY{k+kn}{import} \PY{n+nn}{pandas} \PY{k}{as} \PY{n+nn}{pd}
+          \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{datetime} \PY{k}{as} \PY{n+nn}{dt}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{import} \PY{n+nn}{seaborn} \PY{k}{as} \PY{n+nn}{sns}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{decomposition} \PY{k}{import} \PY{n}{PCA}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{preprocessing} \PY{k}{import} \PY{n}{OneHotEncoder}\PY{p}{,} \PY{n}{normalize}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{model\PYZus{}selection} \PY{k}{import} \PY{n}{train\PYZus{}test\PYZus{}split}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{linear\PYZus{}model} \PY{k}{import} \PY{n}{LogisticRegression}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{LinearSVC}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{svm} \PY{k}{import} \PY{n}{SVC}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{tree} \PY{k}{import} \PY{n}{DecisionTreeClassifier}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{ensemble} \PY{k}{import} \PY{n}{RandomForestClassifier}
+          \PY{k+kn}{from} \PY{n+nn}{sklearn}\PY{n+nn}{.}\PY{n+nn}{metrics} \PY{k}{import} \PY{n}{roc\PYZus{}curve}\PY{p}{,} \PY{n}{auc}
+          \PY{k+kn}{import} \PY{n+nn}{timeit}
+\end{Verbatim}
+
+
+    \subsubsection{Data Extraction}\label{data-extraction}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}2}]:} \PY{n}{df\PYZus{}bookmark} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bookmark\PYZus{}events\PYZus{}subset.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}buy} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{buy\PYZus{}events\PYZus{}subset.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}cards} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cards.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}discover} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{discover\PYZus{}events\PYZus{}subset.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+        \PY{n}{df\PYZus{}user} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{read\PYZus{}csv}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{users\PYZus{}subset.csv}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}12}]:} \PY{n}{df\PYZus{}bookmark}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 315921 entries, 0 to 315920
+Data columns (total 4 columns):
+user\_id       315921 non-null int64
+card\_id       315921 non-null int64
+created\_at    315921 non-null object
+updated\_at    315921 non-null object
+dtypes: int64(2), object(2)
+memory usage: 9.6+ MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}13}]:} \PY{n}{df\PYZus{}buy}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 1907201 entries, 0 to 1907200
+Data columns (total 4 columns):
+card\_id       int64
+user\_id       int64
+created\_at    object
+value         float64
+dtypes: float64(1), int64(2), object(1)
+memory usage: 58.2+ MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}14}]:} \PY{n}{df\PYZus{}cards}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 117 entries, 0 to 116
+Data columns (total 25 columns):
+id                             117 non-null int64
+name                           117 non-null object
+description                    117 non-null object
+underlying\_security            117 non-null object
+ticker\_symbol                  117 non-null object
+last\_price                     117 non-null float64
+dividend\_rate\_percent          117 non-null float64
+expense\_ratio\_percent          114 non-null float64
+one\_day\_change\_percent         117 non-null float64
+year\_to\_date\_change\_percent    117 non-null float64
+created\_at                     117 non-null object
+updated\_at                     117 non-null object
+risk\_level                     117 non-null int64
+fund\_url                       117 non-null object
+inception                      117 non-null object
+last\_refresh                   117 non-null object
+long\_description               117 non-null object
+cusip                          117 non-null object
+start\_of\_year\_price            117 non-null float64
+start\_of\_year\_price\_year       117 non-null int64
+learn\_post\_id                  0 non-null float64
+inception\_price                63 non-null float64
+tags                           117 non-null object
+investment\_type                117 non-null object
+color\_code                     65 non-null object
+dtypes: float64(8), int64(3), object(14)
+memory usage: 22.9+ KB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}15}]:} \PY{n}{df\PYZus{}discover}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 973285 entries, 0 to 973284
+Data columns (total 3 columns):
+uuid        973285 non-null object
+name        973285 non-null object
+datetime    973285 non-null object
+dtypes: object(3)
+memory usage: 22.3+ MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}16}]:} \PY{n}{df\PYZus{}user}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 49638 entries, 0 to 49637
+Data columns (total 8 columns):
+user\_id                        49638 non-null int64
+federal\_tax\_bracket\_percent    49638 non-null float64
+employment\_status              49638 non-null object
+liquidity\_needs                49638 non-null float64
+total\_net\_worth\_range          49638 non-null float64
+age                            49638 non-null int64
+uuid                           49638 non-null object
+risk\_level                     49638 non-null int64
+dtypes: float64(3), int64(3), object(2)
+memory usage: 3.0+ MB
+
+    \end{Verbatim}
+
+    \subsubsection{Q1: Which 5 stocks have the highest volume of
+purchases?}\label{q1-which-5-stocks-have-the-highest-volume-of-purchases}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}17}]:} \PY{n}{df\PYZus{}vol} \PY{o}{=} \PY{n}{df\PYZus{}buy}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{)}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{n}{ascending} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{df\PYZus{}vol}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df\PYZus{}top5\PYZus{}vol} \PY{o}{=} \PY{n}{df\PYZus{}vol}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{5}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}18}]:} \PY{n}{df\PYZus{}top5\PYZus{}vol} \PY{o}{=} \PY{n}{df\PYZus{}top5\PYZus{}vol}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}cards}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{left\PYZus{}on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{right\PYZus{}on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{df\PYZus{}top5\PYZus{}vol}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{axis} \PY{o}{=} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df\PYZus{}top5\PYZus{}vol}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending}\PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{inplace}\PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}18}]:}    card\_id      volume                 name
+         0       13  2149275.36           Blue Chips
+         1        4  2107367.47    Roll with Buffett
+         2       11  2080428.26    Defending America
+         3       18  2030696.78  Delicious Dividends
+         4        2  1770328.24         Moderate Mix
+\end{Verbatim}
+            
+    Based on pure total volume over time, these 5 stocks have highest volume
+of purchases:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor} }]:} \PY{n}{df\PYZus{}top5\PYZus{}vol}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \subsubsection{Q2: Which 5 stocks have been growing the fastest in
+purchase
+volume?}\label{q2-which-5-stocks-have-been-growing-the-fastest-in-purchase-volume}
+
+\begin{itemize}
+\item
+  There are 2 ways of defining growth:
+
+  \begin{enumerate}
+  \def\labelenumi{\arabic{enumi}.}
+  \tightlist
+  \item
+    average incremental percent change
+  \item
+    slope of linear model against time
+  \end{enumerate}
+\end{itemize}
+
+    Before fitting any model, we need to clean the data.
+
+To start with, the time in df\_buy is string. We need to change it to
+datetime object.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}19}]:} \PY{c+c1}{\PYZsh{} transform string to datetime object}
+         \PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{created\PYZus{}at}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{to\PYZus{}datetime}\PY{p}{(}\PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{created\PYZus{}at}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    Take Mastercard (id = 83) as an example to preview the purchase data
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}20}]:} \PY{c+c1}{\PYZsh{} preview mastercard volume}
+         \PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{83}\PY{p}{]}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{l+m+mi}{20}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}20}]:}        card\_id  user\_id                 created\_at  value
+         1648        83     2287 2018-07-12 22:08:59.351741  13.00
+         2808        83     8471 2018-04-28 21:27:57.592101   5.00
+         5056        83    15575 2018-04-30 19:14:21.366750   5.00
+         7214        83    49118 2018-06-07 19:41:19.435139   5.00
+         7215        83    49118 2018-06-14 15:05:55.572422   5.00
+         7216        83    49118 2018-06-21 15:10:13.857048   5.00
+         7217        83    49118 2018-06-28 15:07:30.543615   5.00
+         7218        83    49118 2018-07-05 15:39:35.443756   5.00
+         7219        83    49118 2018-07-12 15:11:23.207447   5.00
+         7220        83    49118 2018-07-19 15:15:38.978370   5.00
+         8930        83    69303 2018-04-27 11:16:51.075024  50.00
+         8931        83    69303 2018-04-27 20:12:17.694564  20.00
+         8932        83    69303 2018-05-25 15:33:14.529805  10.00
+         8933        83    69303 2018-06-01 16:11:35.167975  10.00
+         8934        83    69303 2018-07-09 15:35:52.475164  10.00
+         9099        83    71274 2018-06-06 05:06:07.310526  21.12
+         9100        83    71274 2018-06-12 05:25:04.099576   5.00
+         10081       83    84816 2018-06-09 02:31:22.498176  10.00
+         10082       83    84816 2018-06-11 17:32:57.599114   5.00
+         10083       83    84816 2018-06-18 16:49:37.845588   5.00
+\end{Verbatim}
+            
+    The purchase data happens throughout seconds, minutes and days. We need
+to calculate daily total volume for further analysis.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}21}]:} \PY{c+c1}{\PYZsh{} transform datetime to date and calculate daily volume}
+         \PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}buy}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{created\PYZus{}at}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{x}\PY{o}{.}\PY{n}{toordinal}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+         \PY{n}{buy\PYZus{}daily} \PY{o}{=} \PY{n}{df\PYZus{}buy}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{)}
+         \PY{n}{df\PYZus{}buy\PYZus{}daily} \PY{o}{=} \PY{n}{buy\PYZus{}daily}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} transform ordinal date to datetime}
+         \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{dt}\PY{o}{.}\PY{n}{datetime}\PY{o}{.}\PY{n}{fromordinal}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}22}]:} \PY{c+c1}{\PYZsh{} plot of mastercard volume through time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{10}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Mastercard volume over time}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} distribution of lag with raw data}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{83}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{83}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x119dadeb8>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_22_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}23}]:} \PY{c+c1}{\PYZsh{} function to calculate average incremental percent change}
+         \PY{k}{def} \PY{n+nf}{increment}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{df\PYZus{}cards}\PY{p}{)}\PY{p}{:}
+             \PY{n}{cards} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+             \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{cards}\PY{p}{:}
+                 \PY{n}{df\PYZus{}temp} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+                 \PY{n}{df\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pct\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{pct\PYZus{}change}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{df\PYZus{}temp}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{pct\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{)}
+             \PY{n}{df\PYZus{}raw} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{cards}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}pct\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{result}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{df\PYZus{}output} \PY{o}{=} \PY{n}{df\PYZus{}raw}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}cards}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{df\PYZus{}output}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{avg\PYZus{}pct\PYZus{}change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df\PYZus{}output}
+\end{Verbatim}
+
+
+    The following are the top 5 growth stocks based on incremental
+percentage change.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}24}]:} \PY{c+c1}{\PYZsh{} calculate average incremental change and show the top 5 stocks}
+         \PY{n}{df\PYZus{}top\PYZus{}pct\PYZus{}change} \PY{o}{=} \PY{n}{increment}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{,} \PY{n}{df\PYZus{}cards}\PY{p}{)}
+         \PY{n}{df\PYZus{}top\PYZus{}pct\PYZus{}change}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}24}]:}       id  avg\_pct\_change                  name
+         18    19       35.561417         On Cloud Nine
+         49    50       12.753683      General Electric
+         83    84       10.418437                JD.com
+         95    96        8.554024      General Dynamics
+         112  113        8.014721  Bristol-Myers Squibb
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}25}]:} \PY{c+c1}{\PYZsh{} plot top 5 growth stocks}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{10}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 5 growth stocks over time \PYZhy{}\PYZhy{} incremental percentage change}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} On Cloud Nine over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{On Cloud Nine}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{19}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{19}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} General Electric over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{General Electric}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{50}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{50}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} JD.com over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{JD.com}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{84}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{84}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} General Dynamics over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{General Dynamics}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{96}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{96}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Bristol\PYZhy{}Myers Squibb over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Bristol\PYZhy{}Myers Squibb}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{113}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{113}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x127631be0>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_26_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}26}]:} \PY{c+c1}{\PYZsh{} function to calculate slope of linear model}
+         \PY{k}{def} \PY{n+nf}{linear}\PY{p}{(}\PY{n}{df}\PY{p}{,} \PY{n}{df\PYZus{}cards}\PY{p}{)}\PY{p}{:}
+             \PY{n}{cards} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}
+             \PY{n}{result} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+             \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{cards}\PY{p}{:}
+                 \PY{n}{df\PYZus{}temp} \PY{o}{=} \PY{n}{df}\PY{p}{[}\PY{n}{df}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+                 \PY{n}{reg} \PY{o}{=} \PY{n}{linear\PYZus{}model}\PY{o}{.}\PY{n}{LinearRegression}\PY{p}{(}\PY{p}{)}
+                 \PY{n}{reg}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{df\PYZus{}temp}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}temp}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                 \PY{n}{result}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{reg}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+             \PY{n}{df\PYZus{}raw} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{cards}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{slope}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{n}{result}\PY{p}{\PYZcb{}}\PY{p}{)}
+             \PY{n}{df\PYZus{}output} \PY{o}{=} \PY{n}{df\PYZus{}raw}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}cards}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{name}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+             \PY{n}{df\PYZus{}output}\PY{o}{.}\PY{n}{sort\PYZus{}values}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{slope}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{ascending} \PY{o}{=} \PY{k+kc}{False}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+             \PY{k}{return} \PY{n}{df\PYZus{}output}
+\end{Verbatim}
+
+
+    The following are the top 5 growth stocks based on slopes over time
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}27}]:} \PY{c+c1}{\PYZsh{} calculate slopes of each stock and show the result}
+         \PY{n}{df\PYZus{}top\PYZus{}slope} \PY{o}{=} \PY{n}{linear}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{,} \PY{n}{df\PYZus{}cards}\PY{p}{)}
+         \PY{n}{df\PYZus{}top\PYZus{}slope}\PY{o}{.}\PY{n}{head}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}27}]:}     id         slope               name
+         52  53  1.192962e-12            Netflix
+         45  46  2.845033e-13             Amazon
+         43  44  2.415560e-13      Long-Term Mix
+         6    7  9.356483e-14    Internet Titans
+         10  11  9.136479e-14  Defending America
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}28}]:} \PY{c+c1}{\PYZsh{} plot top 5 growth stocks}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{figure}\PY{p}{(}\PY{n}{figsize} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{16}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{suptitle}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Top 5 growth stocks over time \PYZhy{}\PYZhy{} linear regression slope}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{fontsize} \PY{o}{=} \PY{l+m+mi}{15}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Netflix over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Netflix}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{53}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{53}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Amazon over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Amazon}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{46}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{46}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Long\PYZhy{}Term Mix over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Long\PYZhy{}Term Mix}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{44}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{44}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Internet Titans over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Internet Titans}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{7}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{7}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} Defending America over time}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{subplot}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{5}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Defending America}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{date}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{n}{df\PYZus{}buy\PYZus{}daily}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{==} \PY{l+m+mi}{11}\PY{p}{]}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{daily\PYZus{}volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x1111cfda0>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_30_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsubsection{Q3: Based on the data, what do you think drives a user to
+make a purchase? What would you recommend to the business to increase
+user purchases? What other data would you
+want?}\label{q3-based-on-the-data-what-do-you-think-drives-a-user-to-make-a-purchase-what-would-you-recommend-to-the-business-to-increase-user-purchases-what-other-data-would-you-want}
+
+To solve this problem, we need to use available data and fit models to
+see which fields are most important for users to make a purchase.
+
+\paragraph{Steps:}\label{steps}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  data cleaning
+
+  \begin{enumerate}
+  \def\labelenumii{\arabic{enumii}.}
+  \tightlist
+  \item
+    dataframe of user total volume per card
+  \end{enumerate}
+\item
+  feature engineering
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Y value: quartile label of purchase volume -\/- cat
+  \item
+    list of features (X):
+
+    \begin{itemize}
+    \tightlist
+    \item
+      user\_data:
+
+      \begin{itemize}
+      \tightlist
+      \item
+        user\_id -\/- key
+      \item
+        uuid -\/- key
+      \item
+        federal\_tax\_bracket\_percent -\/- num
+      \item
+        employment\_status -\/- cat
+      \item
+        liquidity\_needs -\/- num
+      \item
+        total\_net\_worth\_range -\/- num
+      \item
+        age -\/- num
+      \item
+        risk\_level -\/- num
+      \end{itemize}
+    \item
+      purchase data
+
+      \begin{itemize}
+      \tightlist
+      \item
+        user\_id -\/- key
+      \item
+        card\_id -\/- key
+      \end{itemize}
+    \item
+      discover data
+
+      \begin{itemize}
+      \tightlist
+      \item
+        it wasnt clear what information this data is about, so we don't
+        include it in the features
+      \end{itemize}
+    \item
+      cards data
+
+      \begin{itemize}
+      \tightlist
+      \item
+        card\_id (renamed) -\/- key
+      \item
+        last\_price -\/- num
+      \item
+        dividend\_rate\_percent -\/- num
+      \item
+        expense\_ratio\_percent -\/- num
+      \item
+        one\_day\_change\_percent -\/- num
+      \item
+        year\_to\_date\_change\_percent -\/- num
+      \item
+        card\_risk\_level(renamed) -\/- num
+      \item
+        start\_of\_year\_price -\/- num
+      \item
+        start\_of\_year\_price\_year -\/- num
+      \end{itemize}
+    \item
+      bookmark data
+
+      \begin{itemize}
+      \tightlist
+      \item
+        user\_id -\/- key
+      \item
+        card\_id -\/- key
+      \item
+        bookmark(new) -\/- binary (0 or 1)
+      \end{itemize}
+    \end{itemize}
+  \end{itemize}
+\item
+  users purchase total volume level classification analysis
+\end{enumerate}
+
+    \paragraph{Data Cleaning}\label{data-cleaning}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}29}]:} \PY{c+c1}{\PYZsh{} dataframe of user total volume per card}
+         \PY{n}{buy\PYZus{}users} \PY{o}{=} \PY{n}{df\PYZus{}buy}\PY{o}{.}\PY{n}{groupby}\PY{p}{(}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{agg}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{)}
+         \PY{n}{df\PYZus{}buy\PYZus{}users} \PY{o}{=} \PY{n}{buy\PYZus{}users}\PY{o}{.}\PY{n}{reset\PYZus{}index}\PY{p}{(}\PY{n}{drop} \PY{o}{=} \PY{k+kc}{False}\PY{p}{)}
+         \PY{n}{df\PYZus{}buy\PYZus{}users}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{value}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} merge df\PYZus{}user with purchase data}
+         \PY{n}{df\PYZus{}temp1} \PY{o}{=} \PY{n}{df\PYZus{}user}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}buy\PYZus{}users}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \paragraph{Feature generation and
+validation}\label{feature-generation-and-validation}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}30}]:} \PY{c+c1}{\PYZsh{} merge df\PYZus{}temp1 with cards data}
+         \PY{n}{df\PYZus{}cards}\PY{o}{.}\PY{n}{rename}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{risk\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}risk\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{\PYZcb{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{n}{df\PYZus{}temp2} \PY{o}{=} \PY{n}{df\PYZus{}temp1}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}cards}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{last\PYZus{}price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dividend\PYZus{}rate\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{expense\PYZus{}ratio\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}day\PYZus{}change\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year\PYZus{}to\PYZus{}date\PYZus{}change\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}risk\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                                             \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}of\PYZus{}year\PYZus{}price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}of\PYZus{}year\PYZus{}price\PYZus{}year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}31}]:} \PY{c+c1}{\PYZsh{} merge df\PYZus{}temp2 with bookmark data}
+         \PY{c+c1}{\PYZsh{} create a new column \PYZdq{}bookmark\PYZdq{}}
+         \PY{n}{df\PYZus{}bookmark}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bookmark}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{l+m+mi}{1}
+         \PY{n}{df\PYZus{}temp3} \PY{o}{=} \PY{n}{df\PYZus{}temp2}\PY{o}{.}\PY{n}{merge}\PY{p}{(}\PY{n}{df\PYZus{}bookmark}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bookmark}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{how} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{left}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{on} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} fill empty values with 0}
+         \PY{n}{df\PYZus{}temp3}\PY{o}{.}\PY{n}{fillna}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}32}]:} \PY{c+c1}{\PYZsh{} drop all keys}
+         \PY{n}{df\PYZus{}temp3}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{user\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{uuid}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}id}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} convert \PYZsq{}employment\PYZus{}status\PYZsq{} to dummy values}
+         \PY{k}{for} \PY{n}{elem} \PY{o+ow}{in} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{employment\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{unique}\PY{p}{(}\PY{p}{)}\PY{p}{:}
+             \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{n+nb}{str}\PY{p}{(}\PY{n}{elem}\PY{p}{)}\PY{p}{]} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{employment\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{l+m+mi}{1} \PY{k}{if} \PY{n}{x} \PY{o}{==} \PY{n}{elem} \PY{k}{else} \PY{l+m+mi}{0}\PY{p}{)}
+         \PY{c+c1}{\PYZsh{} drop \PYZsq{}employment\PYZus{}status\PYZsq{} and \PYZsq{}RETIRED\PYZsq{} to avoid multicolinearality}
+         \PY{n}{df\PYZus{}temp3}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{employment\PYZus{}status}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{RETIRED}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}126}]:} \PY{c+c1}{\PYZsh{} store Y labels}
+          \PY{c+c1}{\PYZsh{} the reason for using quartiles is to make each label volume relatively even}
+          \PY{n}{quantile1} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.25}\PY{p}{)}
+          \PY{n}{quantile2} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.5}\PY{p}{)}
+          \PY{n}{quantile3} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{quantile}\PY{p}{(}\PY{l+m+mf}{0.75}\PY{p}{)}
+          \PY{k}{def} \PY{n+nf}{compare}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{q1}\PY{p}{,} \PY{n}{q2}\PY{p}{,} \PY{n}{q3}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{n}{q1}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mi}{0}
+              \PY{k}{elif} \PY{n}{x} \PY{o}{\PYZlt{}} \PY{n}{q2}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mi}{1}
+              \PY{k}{elif} \PY{n}{x}\PY{o}{\PYZlt{}} \PY{n}{q3}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mi}{2}
+              \PY{k}{else}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mi}{3}
+              
+          \PY{n}{Y} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{volume}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{o}{.}\PY{n}{apply}\PY{p}{(}\PY{k}{lambda} \PY{n}{x}\PY{p}{:} \PY{n}{compare}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{quantile1}\PY{p}{,} \PY{n}{quantile2}\PY{p}{,} \PY{n}{quantile3}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}125}]:} \PY{n}{Y}\PY{o}{.}\PY{n}{value\PYZus{}counts}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}125}]:} 2    122199
+          3    101765
+          0    101182
+          1     81611
+          Name: volume, dtype: int64
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}34}]:} \PY{n}{df\PYZus{}temp3}\PY{o}{.}\PY{n}{columns}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}34}]:} Index(['federal\_tax\_bracket\_percent', 'liquidity\_needs',
+                'total\_net\_worth\_range', 'age', 'risk\_level', 'volume', 'last\_price',
+                'dividend\_rate\_percent', 'expense\_ratio\_percent',
+                'one\_day\_change\_percent', 'year\_to\_date\_change\_percent',
+                'card\_risk\_level', 'start\_of\_year\_price', 'start\_of\_year\_price\_year',
+                'bookmark', 'EMPLOYED', 'STUDENT', 'UNEMPLOYED'],
+               dtype='object')
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c+c1}{\PYZsh{} test correlation among features}
+         \PY{n}{features\PYZus{}raw} \PY{o}{=} \PY{n}{df\PYZus{}temp3}\PY{p}{[}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{federal\PYZus{}tax\PYZus{}bracket\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{liquidity\PYZus{}needs}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{total\PYZus{}net\PYZus{}worth\PYZus{}range}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{age}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{risk\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{last\PYZus{}price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{dividend\PYZus{}rate\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{expense\PYZus{}ratio\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{one\PYZus{}day\PYZus{}change\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{year\PYZus{}to\PYZus{}date\PYZus{}change\PYZus{}percent}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{card\PYZus{}risk\PYZus{}level}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}of\PYZus{}year\PYZus{}price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}of\PYZus{}year\PYZus{}price\PYZus{}year}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,}
+                \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{bookmark}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{EMPLOYED}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{STUDENT}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{UNEMPLOYED}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{]}
+         \PY{c+c1}{\PYZsh{} print correlation matrix}
+         \PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}35}]:}                              federal\_tax\_bracket\_percent  liquidity\_needs  \textbackslash{}
+         federal\_tax\_bracket\_percent                     1.000000        -0.203165   
+         liquidity\_needs                                -0.203165         1.000000   
+         total\_net\_worth\_range                           0.401574        -0.184946   
+         age                                             0.282157        -0.159585   
+         risk\_level                                      0.589180        -0.424130   
+         last\_price                                     -0.003093         0.012709   
+         dividend\_rate\_percent                          -0.028841        -0.004847   
+         expense\_ratio\_percent                           0.067186        -0.038433   
+         one\_day\_change\_percent                         -0.006977         0.003784   
+         year\_to\_date\_change\_percent                     0.008779         0.008572   
+         card\_risk\_level                                 0.237689        -0.139949   
+         start\_of\_year\_price                             0.001368         0.008586   
+         start\_of\_year\_price\_year                        0.082698        -0.067076   
+         bookmark                                       -0.001366        -0.031867   
+         EMPLOYED                                        0.433482        -0.088850   
+         STUDENT                                        -0.382305         0.078886   
+         UNEMPLOYED                                     -0.213238         0.055719   
+         
+                                      total\_net\_worth\_range       age  risk\_level  \textbackslash{}
+         federal\_tax\_bracket\_percent               0.401574  0.282157    0.589180   
+         liquidity\_needs                          -0.184946 -0.159585   -0.424130   
+         total\_net\_worth\_range                     1.000000  0.346191    0.602899   
+         age                                       0.346191  1.000000    0.156955   
+         risk\_level                                0.602899  0.156955    1.000000   
+         last\_price                               -0.006295 -0.003466   -0.012115   
+         dividend\_rate\_percent                    -0.012569  0.004064   -0.029106   
+         expense\_ratio\_percent                     0.045529  0.015357    0.087945   
+         one\_day\_change\_percent                   -0.005747  0.016321   -0.013030   
+         year\_to\_date\_change\_percent               0.000961 -0.004393    0.003103   
+         card\_risk\_level                           0.187046  0.091138    0.316240   
+         start\_of\_year\_price                      -0.001666 -0.001342   -0.005627   
+         start\_of\_year\_price\_year                  0.053798  0.052762    0.086068   
+         bookmark                                  0.008032  0.013456    0.021405   
+         EMPLOYED                                  0.130619  0.101472    0.327635   
+         STUDENT                                  -0.177717 -0.277291   -0.250421   
+         UNEMPLOYED                               -0.047836  0.022676   -0.201734   
+         
+                                      last\_price  dividend\_rate\_percent  \textbackslash{}
+         federal\_tax\_bracket\_percent   -0.003093              -0.028841   
+         liquidity\_needs                0.012709              -0.004847   
+         total\_net\_worth\_range         -0.006295              -0.012569   
+         age                           -0.003466               0.004064   
+         risk\_level                    -0.012115              -0.029106   
+         last\_price                     1.000000              -0.305367   
+         dividend\_rate\_percent         -0.305367               1.000000   
+         expense\_ratio\_percent         -0.271791              -0.289857   
+         one\_day\_change\_percent        -0.193232               0.039725   
+         year\_to\_date\_change\_percent    0.546540              -0.489974   
+         card\_risk\_level               -0.125098              -0.063447   
+         start\_of\_year\_price            0.991037              -0.297720   
+         start\_of\_year\_price\_year       0.067490               0.176102   
+         bookmark                       0.033841              -0.025217   
+         EMPLOYED                      -0.002149              -0.015677   
+         STUDENT                        0.003619               0.014235   
+         UNEMPLOYED                     0.001230               0.002833   
+         
+                                      expense\_ratio\_percent  one\_day\_change\_percent  \textbackslash{}
+         federal\_tax\_bracket\_percent               0.067186               -0.006977   
+         liquidity\_needs                          -0.038433                0.003784   
+         total\_net\_worth\_range                     0.045529               -0.005747   
+         age                                       0.015357                0.016321   
+         risk\_level                                0.087945               -0.013030   
+         last\_price                               -0.271791               -0.193232   
+         dividend\_rate\_percent                    -0.289857                0.039725   
+         expense\_ratio\_percent                     1.000000                0.140011   
+         one\_day\_change\_percent                    0.140011                1.000000   
+         year\_to\_date\_change\_percent              -0.206711               -0.164782   
+         card\_risk\_level                           0.384831               -0.000751   
+         start\_of\_year\_price                      -0.295252               -0.205593   
+         start\_of\_year\_price\_year                  0.129055               -0.047598   
+         bookmark                                  0.040520               -0.014418   
+         EMPLOYED                                  0.043681               -0.004736   
+         STUDENT                                  -0.030842               -0.005121   
+         UNEMPLOYED                               -0.030400                0.010676   
+         
+                                      year\_to\_date\_change\_percent  card\_risk\_level  \textbackslash{}
+         federal\_tax\_bracket\_percent                     0.008779         0.237689   
+         liquidity\_needs                                 0.008572        -0.139949   
+         total\_net\_worth\_range                           0.000961         0.187046   
+         age                                            -0.004393         0.091138   
+         risk\_level                                      0.003103         0.316240   
+         last\_price                                      0.546540        -0.125098   
+         dividend\_rate\_percent                          -0.489974        -0.063447   
+         expense\_ratio\_percent                          -0.206711         0.384831   
+         one\_day\_change\_percent                         -0.164782        -0.000751   
+         year\_to\_date\_change\_percent                     1.000000        -0.066368   
+         card\_risk\_level                                -0.066368         1.000000   
+         start\_of\_year\_price                             0.496789        -0.113285   
+         start\_of\_year\_price\_year                        0.051793         0.363632   
+         bookmark                                        0.039494         0.046972   
+         EMPLOYED                                        0.004962         0.137626   
+         STUDENT                                         0.000714        -0.098836   
+         UNEMPLOYED                                     -0.006456        -0.095657   
+         
+                                      start\_of\_year\_price  start\_of\_year\_price\_year  \textbackslash{}
+         federal\_tax\_bracket\_percent             0.001368                  0.082698   
+         liquidity\_needs                         0.008586                 -0.067076   
+         total\_net\_worth\_range                  -0.001666                  0.053798   
+         age                                    -0.001342                  0.052762   
+         risk\_level                             -0.005627                  0.086068   
+         last\_price                              0.991037                  0.067490   
+         dividend\_rate\_percent                  -0.297720                  0.176102   
+         expense\_ratio\_percent                  -0.295252                  0.129055   
+         one\_day\_change\_percent                 -0.205593                 -0.047598   
+         year\_to\_date\_change\_percent             0.496789                  0.051793   
+         card\_risk\_level                        -0.113285                  0.363632   
+         start\_of\_year\_price                     1.000000                  0.082104   
+         start\_of\_year\_price\_year                0.082104                  1.000000   
+         bookmark                                0.034645                  0.086768   
+         EMPLOYED                               -0.000174                  0.052048   
+         STUDENT                                 0.002786                 -0.016795   
+         UNEMPLOYED                             -0.000779                 -0.064866   
+         
+                                      bookmark  EMPLOYED   STUDENT  UNEMPLOYED  
+         federal\_tax\_bracket\_percent -0.001366  0.433482 -0.382305   -0.213238  
+         liquidity\_needs             -0.031867 -0.088850  0.078886    0.055719  
+         total\_net\_worth\_range        0.008032  0.130619 -0.177717   -0.047836  
+         age                          0.013456  0.101472 -0.277291    0.022676  
+         risk\_level                   0.021405  0.327635 -0.250421   -0.201734  
+         last\_price                   0.033841 -0.002149  0.003619    0.001230  
+         dividend\_rate\_percent       -0.025217 -0.015677  0.014235    0.002833  
+         expense\_ratio\_percent        0.040520  0.043681 -0.030842   -0.030400  
+         one\_day\_change\_percent      -0.014418 -0.004736 -0.005121    0.010676  
+         year\_to\_date\_change\_percent  0.039494  0.004962  0.000714   -0.006456  
+         card\_risk\_level              0.046972  0.137626 -0.098836   -0.095657  
+         start\_of\_year\_price          0.034645 -0.000174  0.002786   -0.000779  
+         start\_of\_year\_price\_year     0.086768  0.052048 -0.016795   -0.064866  
+         bookmark                     1.000000 -0.012111  0.000319    0.009718  
+         EMPLOYED                    -0.012111  1.000000 -0.732289   -0.516447  
+         STUDENT                      0.000319 -0.732289  1.000000   -0.068842  
+         UNEMPLOYED                   0.009718 -0.516447 -0.068842    1.000000  
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{c+c1}{\PYZsh{} plot correlation matrix}
+         \PY{n}{corr} \PY{o}{=} \PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{corr}\PY{p}{(}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+         \PY{n}{fig}\PY{p}{,} \PY{n}{ax} \PY{o}{=} \PY{n}{plt}\PY{o}{.}\PY{n}{subplots}\PY{p}{(}\PY{n}{figsize}\PY{o}{=}\PY{p}{(}\PY{l+m+mi}{8}\PY{p}{,} \PY{l+m+mi}{8}\PY{p}{)}\PY{p}{)}
+         \PY{n}{ax}\PY{o}{.}\PY{n}{matshow}\PY{p}{(}\PY{n}{corr}\PY{p}{)}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{xticks}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{corr}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{corr}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{yticks}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{corr}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{)}\PY{p}{,} \PY{n}{corr}\PY{o}{.}\PY{n}{columns}\PY{p}{)}\PY{p}{;}
+         \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    
+    \begin{verbatim}
+<matplotlib.figure.Figure at 0x1292d19b0>
+    \end{verbatim}
+
+    
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_42_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    Based on correlation analysis, the only problem within features is that
+'start\_of\_year\_price' and 'last\_price' are highly correlated. Thus
+we drop 'start\_of\_year\_price' to avoid multicollinearity.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{c+c1}{\PYZsh{} drop \PYZsq{}start\PYZus{}of\PYZus{}year\PYZus{}price\PYZsq{}}
+         \PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{drop}\PY{p}{(}\PY{n}{columns}\PY{o}{=}\PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{start\PYZus{}of\PYZus{}year\PYZus{}price}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/Users/Michael/anaconda/lib/python3.6/site-packages/pandas/core/frame.py:3697: SettingWithCopyWarning: 
+A value is trying to be set on a copy of a slice from a DataFrame
+
+See the caveats in the documentation: http://pandas.pydata.org/pandas-docs/stable/indexing.html\#indexing-view-versus-copy
+  errors=errors)
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{info}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+<class 'pandas.core.frame.DataFrame'>
+Int64Index: 406757 entries, 0 to 406756
+Data columns (total 16 columns):
+federal\_tax\_bracket\_percent    406757 non-null float64
+liquidity\_needs                406757 non-null float64
+total\_net\_worth\_range          406757 non-null float64
+age                            406757 non-null int64
+risk\_level                     406757 non-null int64
+last\_price                     406757 non-null float64
+dividend\_rate\_percent          406757 non-null float64
+expense\_ratio\_percent          406757 non-null float64
+one\_day\_change\_percent         406757 non-null float64
+year\_to\_date\_change\_percent    406757 non-null float64
+card\_risk\_level                406757 non-null float64
+start\_of\_year\_price\_year       406757 non-null float64
+bookmark                       406757 non-null float64
+EMPLOYED                       406757 non-null int64
+STUDENT                        406757 non-null int64
+UNEMPLOYED                     406757 non-null int64
+dtypes: float64(11), int64(5)
+memory usage: 52.8 MB
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{c+c1}{\PYZsh{} normalize all numerical features}
+         \PY{n}{features} \PY{o}{=} \PY{n}{normalize}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{p}{,} \PY{n}{norm}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}115}]:} \PY{c+c1}{\PYZsh{} split training and testing data}
+          \PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}test} \PY{o}{=} \PY{n}{train\PYZus{}test\PYZus{}split}\PY{p}{(}\PY{n}{features}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{test\PYZus{}size}\PY{o}{=}\PY{l+m+mf}{0.3}\PY{p}{,} \PY{n}{random\PYZus{}state}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}116}]:} \PY{c+c1}{\PYZsh{} print training and testing data size}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training data size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Testing data size}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Training data size
+(284729, 16) (284729,)
+
+Testing data size
+(122028, 16) (122028,)
+
+    \end{Verbatim}
+
+    \paragraph{PCA Analysis}\label{pca-analysis}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}130}]:} \PY{c+c1}{\PYZsh{} Create a Randomized PCA model that takes two components}
+          \PY{n}{randomized\PYZus{}pca} \PY{o}{=} \PY{n}{PCA}\PY{p}{(}\PY{n}{n\PYZus{}components}\PY{o}{=}\PY{l+m+mi}{2}\PY{p}{,} \PY{n}{svd\PYZus{}solver}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{randomized}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Fit and transform the data to the model}
+          \PY{n}{rpca} \PY{o}{=} \PY{n}{randomized\PYZus{}pca}\PY{o}{.}\PY{n}{fit\PYZus{}transform}\PY{p}{(}\PY{n}{features}\PY{p}{)}
+          
+          \PY{c+c1}{\PYZsh{} Inspect the shape}
+          \PY{n}{rpca}\PY{o}{.}\PY{n}{shape}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}130}]:} (406757, 2)
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}131}]:} \PY{c+c1}{\PYZsh{} print Y label size }
+          \PY{n}{Y}\PY{o}{.}\PY{n}{count}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}131}]:} 406757
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}136}]:} \PY{c+c1}{\PYZsh{} show PCA scatter plot}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+          \PY{n}{colors} \PY{o}{=} \PY{p}{[}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{black}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{orange}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{red}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{green}\PY{l+s+s1}{\PYZsq{}}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{:}
+              \PY{n}{x} \PY{o}{=} \PY{n}{rpca}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{n}{Y} \PY{o}{==} \PY{n}{i}\PY{p}{]}
+              \PY{n}{y} \PY{o}{=} \PY{n}{rpca}\PY{p}{[}\PY{p}{:}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{[}\PY{n}{Y} \PY{o}{==} \PY{n}{i}\PY{p}{]}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{scatter}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{n}{colors}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{First Principal Component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Second Principal Component}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{title}\PY{p}{(}\PY{l+s+s2}{\PYZdq{}}\PY{l+s+s2}{PCA Scatter Plot}\PY{l+s+s2}{\PYZdq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_52_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    From the PCA plot, it is evident that the users who make little purchase
+(label = 0) are seperated from the others.
+
+Meanwhile, the users making small to huge purchases seem to have similar
+characteristics based on existed data. That explains why they show up in
+the same clusters in PCA plot.
+
+    \paragraph{Logistic Regression
+Classification}\label{logistic-regression-classification}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}160}]:} \PY{c+c1}{\PYZsh{} try different parameters and tune Logistic Regression}
+          
+          \PY{n}{start} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{param\PYZus{}logit} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{]}
+          \PY{n}{train\PYZus{}scores\PYZus{}logit} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{test\PYZus{}scores\PYZus{}logit} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{logit\PYZus{}model} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          
+          \PY{c+c1}{\PYZsh{} Due to limited computing power, the parameters will be tested in sub\PYZhy{}for\PYZhy{}loops}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{param\PYZus{}logit}\PY{p}{:}
+              \PY{n}{clf\PYZus{}temp} \PY{o}{=} \PY{n}{LogisticRegression}\PY{p}{(}\PY{n}{penalty} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C} \PY{o}{=} \PY{n}{i}\PY{p}{,} \PY{n}{solver} \PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{newton\PYZhy{}cg}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}train\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}test\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+              \PY{n}{train\PYZus{}scores\PYZus{}logit}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}train\PYZus{}score}\PY{p}{)}
+              \PY{n}{test\PYZus{}scores\PYZus{}logit}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}test\PYZus{}score}\PY{p}{)}
+              \PY{n}{logit\PYZus{}model}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}
+          
+          \PY{n}{stop} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          \PY{n}{clf\PYZus{}tune\PYZus{}logit\PYZus{}time} \PY{o}{=} \PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Running time: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Running time: 15.372
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}161}]:} \PY{c+c1}{\PYZsh{} create a dataframe to display comparison}
+          \PY{n}{d\PYZus{}tune\PYZus{}logit} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{param\PYZus{}logit}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{train\PYZus{}scores\PYZus{}logit}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Testing Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{test\PYZus{}scores\PYZus{}logit}\PY{p}{\PYZcb{}}
+          \PY{n}{df\PYZus{}tune\PYZus{}logit} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{d\PYZus{}tune\PYZus{}logit}\PY{p}{)}
+          \PY{n}{df\PYZus{}tune\PYZus{}logit}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}162}]:} \PY{c+c1}{\PYZsh{} display the result}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{fig\PYZus{}logit} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{df\PYZus{}tune\PYZus{}logit}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.9}\PY{p}{)}
+          \PY{n}{fig\PYZus{}logit}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Logistic Regression Accuracy Heatmap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_57_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}169}]:} \PY{c+c1}{\PYZsh{} best model\PYZsq{}s coefficients}
+          \PY{n}{logit\PYZus{}model}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}169}]:} array([ 0.48680195, -0.30176586,  0.29125817,  0.51030172,  0.20422856,
+                  1.41767985, -0.41957944,  0.13580306,  0.02788339,  1.87484037,
+                  0.24105954,  3.85662781,  0.1402178 , -0.01991145, -0.11869177,
+                 -0.07586369])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}189}]:} \PY{c+c1}{\PYZsh{} The most important features:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The most important features from Logistic Regression:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{5}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The most important features from Logistic Regression:
+
+age
+last\_price
+year\_to\_date\_change\_percent
+start\_of\_year\_price\_year
+
+    \end{Verbatim}
+
+    \paragraph{Linear SVM}\label{linear-svm}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}157}]:} \PY{c+c1}{\PYZsh{} try different parameters and tune Linear SVM}
+          
+          \PY{n}{start} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{param\PYZus{}lsvm} \PY{o}{=} \PY{p}{[}\PY{l+m+mf}{0.01}\PY{p}{,} \PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{l+m+mi}{5}\PY{p}{]}
+          \PY{n}{train\PYZus{}scores\PYZus{}lsvm} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{test\PYZus{}scores\PYZus{}lsvm} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{lsvm\PYZus{}model} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{param\PYZus{}lsvm}\PY{p}{:}
+              \PY{n}{clf\PYZus{}temp} \PY{o}{=} \PY{n}{LinearSVC}\PY{p}{(}\PY{n}{penalty} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{l2}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{C} \PY{o}{=} \PY{n}{i}\PY{p}{,} \PY{n}{multi\PYZus{}class} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{ovr}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}train\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}test\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+              \PY{n}{train\PYZus{}scores\PYZus{}lsvm}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}train\PYZus{}score}\PY{p}{)}
+              \PY{n}{test\PYZus{}scores\PYZus{}lsvm}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}test\PYZus{}score}\PY{p}{)}
+              \PY{n}{lsvm\PYZus{}model}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{coef\PYZus{}}\PY{p}{)}
+          
+          \PY{n}{stop} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          \PY{n}{clf\PYZus{}tune\PYZus{}lsvm\PYZus{}time} \PY{o}{=} \PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Running time: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Running time: 85.222
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}158}]:} \PY{c+c1}{\PYZsh{} create a dataframe to display comparison}
+          \PY{n}{d\PYZus{}tune\PYZus{}lsvm} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{param\PYZus{}lsvm}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{train\PYZus{}scores\PYZus{}lsvm}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Testing Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{test\PYZus{}scores\PYZus{}lsvm}\PY{p}{\PYZcb{}}
+          \PY{n}{df\PYZus{}tune\PYZus{}lsvm} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{d\PYZus{}tune\PYZus{}lsvm}\PY{p}{)}
+          \PY{n}{df\PYZus{}tune\PYZus{}lsvm}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}159}]:} \PY{c+c1}{\PYZsh{} display the result}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{fig\PYZus{}lsvm} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{df\PYZus{}tune\PYZus{}lsvm}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.9}\PY{p}{)}
+          \PY{n}{fig\PYZus{}lsvm}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Linear SVM Accuracy Heatmap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_63_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}179}]:} \PY{c+c1}{\PYZsh{} best model\PYZsq{}s coefficients}
+          \PY{n}{lsvm\PYZus{}model}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}179}]:} array([ 0.19756951, -0.11794891,  0.11567416,  0.2656383 ,  0.08048791,
+                  0.29127145, -0.1725603 ,  0.05221416,  0.00874305,  0.82677432,
+                  0.09615475,  0.79216528,  0.05612882, -0.00860008, -0.04702782,
+                 -0.02904299])
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}191}]:} \PY{c+c1}{\PYZsh{} The most important features:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The most important features from Linear SVM:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{11}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The most important features from Linear SVM:
+
+year\_to\_date\_change\_percent
+start\_of\_year\_price\_year
+
+    \end{Verbatim}
+
+    \paragraph{Random Forest
+Classification}\label{random-forest-classification}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}192}]:} \PY{c+c1}{\PYZsh{} try different parameters and tune random forest}
+          
+          \PY{n}{start} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{param\PYZus{}rdmfr} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{25}\PY{p}{,} \PY{l+m+mi}{50}\PY{p}{,} \PY{l+m+mi}{100}\PY{p}{]}
+          \PY{n}{train\PYZus{}scores\PYZus{}rdmfr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{test\PYZus{}scores\PYZus{}rdmfr} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{n}{rdmfr\PYZus{}model} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+          \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n}{param\PYZus{}rdmfr}\PY{p}{:}
+              \PY{n}{clf\PYZus{}temp} \PY{o}{=} \PY{n}{RandomForestClassifier}\PY{p}{(}\PY{n}{n\PYZus{}estimators} \PY{o}{=} \PY{n}{i}\PY{p}{,} \PY{n}{criterion} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{entropy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{max\PYZus{}depth} \PY{o}{=} \PY{l+m+mi}{5}\PY{p}{)}
+              \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{fit}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}train\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}train}\PY{p}{,} \PY{n}{y\PYZus{}train}\PY{p}{)}
+              \PY{n}{temp\PYZus{}test\PYZus{}score} \PY{o}{=} \PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{score}\PY{p}{(}\PY{n}{X\PYZus{}test}\PY{p}{,} \PY{n}{y\PYZus{}test}\PY{p}{)}
+              \PY{n}{train\PYZus{}scores\PYZus{}rdmfr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}train\PYZus{}score}\PY{p}{)}
+              \PY{n}{test\PYZus{}scores\PYZus{}rdmfr}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{temp\PYZus{}test\PYZus{}score}\PY{p}{)}
+              \PY{n}{rdmfr\PYZus{}model}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{clf\PYZus{}temp}\PY{o}{.}\PY{n}{feature\PYZus{}importances\PYZus{}}\PY{p}{)}
+          
+          \PY{n}{stop} \PY{o}{=} \PY{n}{timeit}\PY{o}{.}\PY{n}{default\PYZus{}timer}\PY{p}{(}\PY{p}{)}
+          \PY{n}{clf\PYZus{}tune\PYZus{}rdmfr\PYZus{}time} \PY{o}{=} \PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Running time: }\PY{l+s+si}{\PYZpc{}.3f}\PY{l+s+s1}{\PYZsq{}} \PY{o}{\PYZpc{}} \PY{p}{(}\PY{n}{stop} \PY{o}{\PYZhy{}} \PY{n}{start}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Running time: 40.940
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}165}]:} \PY{c+c1}{\PYZsh{} create a dataframe to display comparison}
+          \PY{n}{d\PYZus{}tune\PYZus{}rdmfr} \PY{o}{=} \PY{p}{\PYZob{}}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{param\PYZus{}rdmfr}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Training Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{train\PYZus{}scores\PYZus{}rdmfr}\PY{p}{,}
+                      \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Testing Accuracy}\PY{l+s+s1}{\PYZsq{}}\PY{p}{:} \PY{n}{test\PYZus{}scores\PYZus{}rdmfr}\PY{p}{\PYZcb{}}
+          \PY{n}{df\PYZus{}tune\PYZus{}rdmfr} \PY{o}{=} \PY{n}{pd}\PY{o}{.}\PY{n}{DataFrame}\PY{p}{(}\PY{n}{data} \PY{o}{=} \PY{n}{d\PYZus{}tune\PYZus{}rdmfr}\PY{p}{)}
+          \PY{n}{df\PYZus{}tune\PYZus{}rdmfr}\PY{o}{.}\PY{n}{set\PYZus{}index}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{C}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inplace} \PY{o}{=} \PY{k+kc}{True}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}166}]:} \PY{c+c1}{\PYZsh{} display the result}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{clf}\PY{p}{(}\PY{p}{)}
+          
+          \PY{n}{fig\PYZus{}rdmfr} \PY{o}{=} \PY{n}{sns}\PY{o}{.}\PY{n}{heatmap}\PY{p}{(}\PY{n}{df\PYZus{}tune\PYZus{}rdmfr}\PY{p}{,} \PY{n}{annot}\PY{o}{=}\PY{k+kc}{True}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{f}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{subplots\PYZus{}adjust}\PY{p}{(}\PY{n}{top}\PY{o}{=}\PY{l+m+mf}{0.9}\PY{p}{)}
+          \PY{n}{fig\PYZus{}rdmfr}\PY{o}{.}\PY{n}{set\PYZus{}title}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{Random Forest Accuracy Heatmap}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_69_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}184}]:} \PY{c+c1}{\PYZsh{} best model\PYZsq{}s coefficients}
+          \PY{p}{[}\PY{n+nb}{round}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)} \PY{k}{for} \PY{n}{x} \PY{o+ow}{in} \PY{n}{rdmfr\PYZus{}model}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}
+\end{Verbatim}
+
+
+\begin{Verbatim}[commandchars=\\\{\}]
+{\color{outcolor}Out[{\color{outcolor}184}]:} [0.3272,
+           0.0001,
+           0.0315,
+           0.1078,
+           0.1684,
+           0.0301,
+           0.0405,
+           0.0804,
+           0.0152,
+           0.0632,
+           0.0411,
+           0.0896,
+           0.0041,
+           0.0006,
+           0.0,
+           0.0]
+\end{Verbatim}
+            
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}193}]:} \PY{c+c1}{\PYZsh{} The most important features:}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{The most important features from Random Forest:}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{]}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{features\PYZus{}raw}\PY{o}{.}\PY{n}{columns}\PY{p}{[}\PY{l+m+mi}{4}\PY{p}{]}\PY{p}{)}
+\end{Verbatim}
+
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The most important features from Random Forest:
+
+federal\_tax\_bracket\_percent
+age
+risk\_level
+
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
